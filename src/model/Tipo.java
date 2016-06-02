@@ -33,5 +33,8 @@ public class Tipo {
         this.nombreTipo = nombreTipo;
     }
     
-    
+        @Override
+    public String toString() {
+        return nombreTipo;
+    }
 }

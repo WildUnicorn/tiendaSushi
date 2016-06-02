@@ -7,13 +7,14 @@ tipo Varchar(30),
 primary key (id)
 );
 
-
 insert into tipo values(null,'Sushi');
-insert into tipo values(null,'Agregado');
+insert into tipo values(null,'Papas');
 insert into tipo values(null,'Bebida');
 insert into tipo values(null,'Jugo');
 insert into tipo values(null,'Cerveza');
 insert into tipo values(null,'Otro');
+insert into tipo values(null,'Empanadas');
+insert into tipo values(null,'Gyosas');
 
 
 create table producto(
@@ -50,13 +51,15 @@ insert into producto values(null,'Papas fritas pequeñas',1000,2);
 insert into producto values(null,'Papas fritas medianas',1500,2);
 insert into producto values(null,'Papas fritas grandes',2000,2);
 insert into producto values(null,'Papas fritas familiares',2500,2);
-insert into producto values(null,'4 Empanadas de queso',500,2);
-insert into producto values(null,'8 Empanadas de queso',1000,2);
-insert into producto values(null,'12 Empanadas de queso',1500,2);
-insert into producto values(null,'8 Arrollados primavera',1290,2);
-insert into producto values(null,'6 Gyosas de pollo',1990,2);
-insert into producto values(null,'12 Gyosas de pollo',2590,2);
-insert into producto values(null,'6 Gyosas de cerdo',1990,2);
+
+insert into producto values(null,'4 Empanadas de queso',500,7);
+insert into producto values(null,'8 Empanadas de queso',1000,7);
+insert into producto values(null,'12 Empanadas de queso',1500,7);
+
+insert into producto values(null,'8 Arrollados primavera',1290,8);
+insert into producto values(null,'6 Gyosas de pollo',1990,8);
+insert into producto values(null,'12 Gyosas de pollo',2590,8);
+insert into producto values(null,'6 Gyosas de cerdo',1990,8);
 insert into producto values(null,'12 Gyosas de cerdo',2590,2);
 
 
@@ -118,7 +121,7 @@ primary key (id)
 create table venta (
 id int auto_increment,
 total int,
-primary key (id),
+primary key (id)
 
 );
 

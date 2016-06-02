@@ -2,8 +2,6 @@ package model;
 
 import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
 
@@ -11,23 +9,23 @@ import javax.swing.table.TableModel;
  *
  * @author Piaa FernanDaa
  */
-public class TMAdmin implements TableModel{
-        private List<Producto> productos;
-        private Data d;
+public class TMSushi implements TableModel{
+        private List<Producto> sushi;
 
-    public TMAdmin(List<Producto> productos) throws SQLException{
-        this.productos = productos;
-        this.d = new Data();
-    }
+        
+    public TMSushi(List<Producto> sushi) throws SQLException{
+        this.sushi = sushi;
 
+    }   
+        
     @Override
     public int getRowCount() {
-        return productos.size();
+       return sushi.size();
     }
 
     @Override
     public int getColumnCount() {
-        return 4;
+        return 3;
     }
 
     @Override
@@ -35,8 +33,7 @@ public class TMAdmin implements TableModel{
         switch (columnIndex){
             case 0: return "id";
             case 1: return "Nombre";
-            case 2: return "Precio";
-            case 3: return "Tipo";              
+            case 2: return "Precio";             
         }
         return null;
     }
@@ -53,7 +50,7 @@ public class TMAdmin implements TableModel{
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-                Producto p = productos.get(rowIndex);
+        Producto p = sushi.get(rowIndex);
 
         switch (columnIndex) {
             case 0:
@@ -62,19 +59,6 @@ public class TMAdmin implements TableModel{
                 return p.getNombre();
             case 2:
                 return p.getPrecio();
-            case 3:
-
-                int id = p.getTipo();
-                
-                {
-                    try {
-                        Tipo t = d.getTipoPorId(id);
-                        return t.getNombreTipo();
-                    } catch (SQLException ex) {
-                        Logger.getLogger(TMAdmin.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-
         }
         return null;
     }

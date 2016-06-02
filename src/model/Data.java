@@ -18,7 +18,7 @@ public class Data {
     private String q;
     private ResultSet rs;
     private List<Producto> productos;
-    private List<Tipo> tipos;
+    private List<Tipo> tipo;
     private List<VentaProducto> compras;
     private List<Cliente> clientes;
     
@@ -30,11 +30,10 @@ public class Data {
                 "");
     }
     public void crearProducto(Producto p) throws SQLException{
-        q = "insert into producto values (NULL, "
-                + "'"+p.getId()+"',"
+        q = "insert into producto values (null, "
                 + "'"+p.getNombre()+"',"
                 + "'"+p.getPrecio()+"',"
-                + "'"+p.getIdTipo()+"')";
+                + "'"+p.getTipo()+"')";
         c.ejecutar(q);
     }
     
@@ -49,7 +48,7 @@ public class Data {
             p.setId(rs.getInt(1));
             p.setNombre(rs.getString(2));
             p.setPrecio(rs.getInt(3));
-            p.setIdTipo(rs.getInt(4));
+            p.setTipo(rs.getInt(4));
             
             productos.add(p);
 //            productos.add(new Producto(
@@ -103,10 +102,10 @@ public class Data {
         return productos;
     }
 
-    public Tipo getTipo(int id) throws SQLException {
+    public Tipo getTipoPorId(int id) throws SQLException {
         q = "select * from tipo where id = '"+id+"'";
         System.out.println(q);
-        tipos = new ArrayList<>();
+        tipo = new ArrayList<>();
         rs = c.ejecutarSelect(q);
         Tipo t = null;
         /*Mientras exista un siguiente registro*/
@@ -116,25 +115,57 @@ public class Data {
             t.setId(rs.getInt(1));
             t.setNombre(rs.getString(2));
             
-            tipos.add(t);
+            tipo.add(t);
         }
         c.desconectar();
         
         return t;
     }
-    
+    public List <Tipo> getTipo() throws SQLException{
+        tipo = new ArrayList<>();
+        Tipo t;
+        
+        q = "select * from tipo";
+        
+        tipo = new ArrayList<>();
+        rs = c.ejecutarSelect(q);
+        
+        /*Mientras exista un siguiente registro*/
+        
+        while(rs.next()){
+            t = new Tipo();
+            
+            t.setId(rs.getInt(1));
+            t.setNombre(rs.getString(2));
+  
+            
+            tipo.add(t);
+        }
+        c.desconectar();
+        return tipo;
+        
+    }
     public void agregarCliente (Cliente cl) throws SQLException{
        
             q = "insert into cliente values (NULL, "
                     + "'"+cl.getNombre()+"',"
                     + "'"+cl.getApellido()+"',"
                     + "'"+cl.getTelefono()+"',"
-                    + "'"+cl.getDireccion()+"')"
+                    + "'"+cl.getDireccion()+"',"
                     + "'"+cl.getRut()+"')";
             c.ejecutar(q);
 
     }
     
+        public void ventaNueva (Venta v) throws SQLException{
+       
+            q = "insert into venta values (NULL, "
+                    + "'"+v.getId()+"',"
+                    + "'"+v.getTotal()+"')";
+                    
+            c.ejecutar(q);
+
+    }
     public void crearBoleta (VentaProducto b) throws SQLException{
         q = "insert into ventaProducto values (NULL, "
                     + "'"+b.getIdProducto()+"',"

@@ -8,13 +8,13 @@ public class Producto extends Object{
     private int id;
     private String nombre;
     private int precio;
-    private int idTipo;
+    private int tipo;
 
-    public Producto(int id, String nombre, int precio, int idTipo) {
+    public Producto(int id, String nombre, int precio, int tipo) {
         this.id = id;
         this.nombre = nombre;
         this.precio = precio;
-        this.idTipo = idTipo;
+        this.tipo = tipo;
     }
 
     public Producto() {
@@ -44,12 +44,12 @@ public class Producto extends Object{
         this.precio = precio;
     }
 
-    public int getIdTipo() {
-        return idTipo;
+    public int getTipo() {
+        return tipo;
     }
 
-    public void setIdTipo(int idTipo) {
-        this.idTipo = idTipo;
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
     }
 
     @Override

@@ -39,9 +39,9 @@ private Connection con;// Establecer la conexión
     
     
     //insert,,delate ,update
-    public void ejecutar (String query)throws SQLException{
+    public void ejecutar (String q)throws SQLException{
         sen = con.createStatement();
-        sen.execute(query);
+        sen.execute(q);
         desconectar();
         
         
