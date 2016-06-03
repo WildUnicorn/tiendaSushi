@@ -133,3 +133,5 @@ cantidadProductos int,
 subTotal int,
 primary key (id)
 );
+
+
